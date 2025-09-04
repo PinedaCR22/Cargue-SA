@@ -1,14 +1,36 @@
+// src/sections/WhyUs.tsx
 import { ShieldCheck, BadgeCheck, Clock } from "lucide-react";
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+
+const images = ["/images/1.jpg", "/images/2.jpg", "/images/3.jpg"];
 
 export default function WhyUs() {
+  const [index, setIndex] = useState(0);
+
+  // Cambiar foto cada 5 segundos
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % images.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
-    <section id="por-que-elegirnos" className="py-14 md:py-20 bg-white scroll-mt-24">
+    <section
+      id="por-que-elegirnos"
+      className="py-14 md:py-20 bg-white scroll-mt-24"
+    >
       <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-10 items-center">
+        {/* Texto */}
         <div>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#111]">¿Por qué elegirnos?</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-[#111]">
+            ¿Por qué elegirnos?
+          </h2>
           <p className="mt-3 text-[#4b5563]">
-            Experiencia, cumplimiento y seguridad en cada proyecto. Acompañamos de inicio a fin con
-            un equipo especializado y equipamiento profesional.
+            Experiencia, cumplimiento y seguridad en cada proyecto. Acompañamos
+            de inicio a fin con un equipo especializado y equipamiento
+            profesional.
           </p>
           <ul className="mt-6 space-y-3">
             <li className="flex items-center gap-3">
@@ -26,11 +48,21 @@ export default function WhyUs() {
           </ul>
         </div>
 
+        {/* Imagen que rota automáticamente */}
         <div className="rounded-2xl border border-black/10 p-6">
-          <div className="aspect-video w-full rounded-xl bg-[url('/projects/cover.jpg')] bg-cover bg-center" />
-          <p className="mt-4 text-sm text-[#4b5563]">
-            Imagen de referencia — reemplaza <code>/projects/cover.jpg</code> por una foto real.
-          </p>
+          <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={index}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 1 }}
+                className="absolute inset-0 bg-center bg-cover"
+                style={{ backgroundImage: `url(${images[index]})` }}
+              />
+            </AnimatePresence>
+          </div>
         </div>
       </div>
     </section>
