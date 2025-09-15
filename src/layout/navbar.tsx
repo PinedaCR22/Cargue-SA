@@ -2,6 +2,7 @@
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Phone, Menu, X } from "lucide-react";
 import { useEffect, useState } from "react";
+import { FaFacebookSquare } from "react-icons/fa";
 
 type Item = { label: string; hash: `#${string}` };
 
@@ -26,7 +27,7 @@ export default function Navbar() {
 
   const handleClick = (e: React.MouseEvent, hash: string) => {
     e.preventDefault();
-    setOpen(false); // cerrar menú móvil al navegar
+    setOpen(false);
 
     if (location.pathname !== "/") {
       navigate({ pathname: "/", hash });
@@ -40,7 +41,6 @@ export default function Navbar() {
     smoothScrollTo(hash);
   };
 
-  // Bloquear scroll del body cuando el menú móvil está abierto
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
     return () => {
@@ -75,12 +75,23 @@ export default function Navbar() {
         </ul>
 
         {/* CTA (desktop) */}
-        <a
-          href="tel:50660161790"
-          className="hidden md:inline-flex items-center gap-2 rounded-xl bg-[#F7931A] text-white px-4 py-2.5 text-sm lg:text-base font-semibold hover:brightness-110 transition"
-        >
-          <Phone size={18} /> 6016-1790
-        </a>
+        <div className="hidden md:flex items-center gap-3">
+          <a
+            href="tel:50660161790"
+            className="inline-flex items-center gap-2 rounded-xl bg-[#F7931A] text-white px-4 py-2.5 text-sm lg:text-base font-semibold hover:brightness-110 transition"
+          >
+            <Phone size={18} /> 6016-1790
+          </a>
+          <a
+            href="https://www.facebook.com/share/17E2cKtRX5"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[#F7931A] hover:text-[#d97706] transition-colors"
+            aria-label="Facebook"
+          >
+            <FaFacebookSquare size={28} />
+          </a>
+        </div>
 
         {/* Botón menú móvil */}
         <button
@@ -113,12 +124,22 @@ export default function Navbar() {
                 </Link>
               </li>
             ))}
-            <li className="pt-2">
+            <li className="pt-2 flex flex-col gap-2">
               <a
                 href="tel:50660161790"
                 className="w-full inline-flex items-center justify-center gap-2 rounded-xl bg-[#F7931A] text-white px-4 py-3 text-base font-semibold hover:brightness-110 transition"
               >
                 <Phone size={18} /> Llamar: 6016-1790
+              </a>
+              {/* Facebook debajo en móviles */}
+              <a
+                href="https://www.facebook.com/share/17E2cKtRX5"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex justify-center text-[#F7931A] hover:text-[#d97706] transition-colors"
+                aria-label="Facebook"
+              >
+                <FaFacebookSquare size={32} />
               </a>
             </li>
           </ul>
