@@ -17,7 +17,7 @@ const items: Service[] = [
   { icon: Hammer,    title: "Obras Civiles",            desc: "Estructuras, cimentación y acabados.", route: "/servicios/obras-civiles",        image: baseImgs[0] },
   { icon: Truck,     title: "Movimiento de Materiales", desc: "Transporte y acarreo de agregados.",   route: "/servicios/movimiento-materiales", image: baseImgs[1] },
   { icon: Building2, title: "Urbanismo",                desc: "Calles, aceras, drenajes y más.",      route: "/servicios/urbanismo",             image: baseImgs[2] },
-  { icon: Home,      title: "Remodelaciones",           desc: "Residencial y comercial.",             route: "/servicios/remodelaciones",        image: baseImgs[0] },
+  { icon: Home,      title: "Remodelación",           desc: "Residencial y comercial.",             route: "/servicios/remodelación",        image: baseImgs[0] },
   { icon: Wrench,    title: "Mantenimiento",            desc: "Correctivo y preventivo.",             route: "/servicios/mantenimiento",         image: baseImgs[1] },
   { icon: Factory,   title: "Alquiler de Equipo",       desc: "Maquinaria con operador.",             route: "/servicios/alquiler-equipo",       image: baseImgs[2] },
 ];
