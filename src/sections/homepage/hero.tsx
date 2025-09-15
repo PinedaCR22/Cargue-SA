@@ -1,7 +1,7 @@
 // src/sections/Hero.tsx
 import { useRef } from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Phone, ChevronLeft, ChevronRight } from "lucide-react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination, EffectFade } from "swiper/modules";
@@ -9,15 +9,43 @@ import type { Swiper as SwiperType } from "swiper";
 
 const IMAGES = ["/images/1.jpg", "/images/2.jpg", "/images/3.jpg"];
 
+// misma función que en el Navbar
+function smoothScrollTo(hash: string) {
+  const el = document.querySelector(hash);
+  if (!el) return;
+  (el as HTMLElement).scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 export default function Hero() {
   const swiperRef = useRef<SwiperType | null>(null);
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const goToProyectos = (e: React.MouseEvent) => {
+    e.preventDefault();
+    const hash = "#proyectos";
+
+    // Si NO estamos en home, navegamos y luego scrolleamos
+    if (location.pathname !== "/") {
+      navigate({ pathname: "/", hash });
+      requestAnimationFrame(() => smoothScrollTo(hash));
+      return;
+    }
+
+    // Si ya estamos en home, actualizamos URL y scrolleamos
+    if (window.history?.pushState) {
+      const url = `${window.location.pathname}${hash}`;
+      window.history.pushState(null, "", url);
+    }
+    smoothScrollTo(hash);
+  };
 
   return (
     <section
       id="inicio"
       className="relative min-h-[65vh] md:min-h-[75vh] lg:min-h-[85vh] overflow-hidden"
     >
-      {/* Carrusel de fondo (z-0) */}
+      {/* Carrusel de fondo */}
       <div className="absolute inset-0 z-0">
         <Swiper
           className="h-full"
@@ -31,7 +59,6 @@ export default function Hero() {
         >
           {IMAGES.map((src, i) => (
             <SwiperSlide key={i} className="h-full">
-              {/* Contenedor inner con clase para el fix CSS */}
               <div className="slide-inner">
                 <img
                   src={src}
@@ -39,7 +66,6 @@ export default function Hero() {
                   className="absolute inset-0 w-full h-full object-cover"
                   draggable={false}
                 />
-                {/* Overlays para legibilidad */}
                 <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-black/40 to-black/60" />
                 <div className="absolute inset-0 bg-black/10" />
               </div>
@@ -48,7 +74,7 @@ export default function Hero() {
         </Swiper>
       </div>
 
-      {/* Contenido principal (z-10) */}
+      {/* Contenido principal */}
       <div className="relative z-10 max-w-6xl mx-auto px-6 py-20 md:py-28">
         <motion.h1
           initial={{ y: 14, opacity: 0 }}
@@ -77,8 +103,10 @@ export default function Hero() {
             <Phone size={18} /> 6016-1790
           </a>
 
+          {/* Navega y hace smooth scroll a #proyectos */}
           <Link
-            to="/#proyectos"
+            to={{ pathname: "/", hash: "#proyectos" }}
+            onClick={goToProyectos}
             className="inline-flex items-center gap-2 rounded-xl px-5 py-3 font-semibold border border-white/20 text-white hover:bg-white/10 transition"
           >
             Ver proyectos

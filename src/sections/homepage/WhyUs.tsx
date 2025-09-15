@@ -19,38 +19,38 @@ export default function WhyUs() {
   return (
     <section
       id="por-que-elegirnos"
-      className="py-14 md:py-20 bg-white scroll-mt-24"
+      className="py-14 md:py-20 bg-gradient-to-br from-[#F7931A] via-[#F7931A]/95 to-white scroll-mt-24"
     >
       <div className="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-10 items-center">
         {/* Texto */}
         <div>
-          <h2 className="text-2xl md:text-3xl font-bold text-[#111]">
+          <h2 className="text-2xl md:text-3xl font-extrabold text-black">
             ¿Por qué elegirnos?
           </h2>
-          <p className="mt-3 text-[#4b5563]">
+          <p className="mt-3 text-black/80">
             Experiencia, cumplimiento y seguridad en cada proyecto. Acompañamos
             de inicio a fin con un equipo especializado y equipamiento
             profesional.
           </p>
-          <ul className="mt-6 space-y-3">
+          <ul className="mt-6 space-y-3 text-black">
             <li className="flex items-center gap-3">
-              <ShieldCheck className="text-[#F7931A]" />
+              <ShieldCheck className="text-black" />
               <span>Seguridad y normativa vigente.</span>
             </li>
             <li className="flex items-center gap-3">
-              <BadgeCheck className="text-[#F7931A]" />
+              <BadgeCheck className="text-black" />
               <span>Calidad certificada y acabados profesionales.</span>
             </li>
             <li className="flex items-center gap-3">
-              <Clock className="text-[#F7931A]" />
+              <Clock className="text-black" />
               <span>Entrega a tiempo y gestión transparente.</span>
             </li>
           </ul>
         </div>
 
         {/* Imagen que rota automáticamente */}
-        <div className="rounded-2xl border border-black/10 p-6">
-          <div className="relative aspect-video w-full overflow-hidden rounded-xl">
+        <div className="rounded-2xl bg-white shadow-xl border-4 border-black overflow-hidden">
+          <div className="relative aspect-video w-full">
             <AnimatePresence mode="wait">
               <motion.div
                 key={index}
