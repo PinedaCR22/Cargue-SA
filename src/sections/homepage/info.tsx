@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import type { Variants } from "framer-motion";
 
 const stats = [
-  { Icon: Building2, value: "+8 años", label: "De experiencia en construcción" },
+  { Icon: Building2, value: "+20 años", label: "De experiencia en construcción" },
   { Icon: Users, value: "+100", label: "Historias de éxito con clientes" },
   { Icon: Ruler, value: "+25,000m²", label: "Apartamentos, casas, oficinas y más" },
   { Icon: Banknote, value: "+$5,000,000", label: "En financiamiento para proyectos" },

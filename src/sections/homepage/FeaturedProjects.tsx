@@ -20,7 +20,7 @@ const projects: Project[] = [...baseImages, ...baseImages].map((img, idx) => ({
   title: `Proyecto ${idx + 1}`,
   subtitle: "Obra civil / Urbanismo — movimiento de materiales y construcción.",
   description:
-    "Descripción ampliada del proyecto: alcance, tiempos, materiales principales, equipo involucrado y resultados. Incluye detalles de cronograma, metrados clave y aprendizajes aplicados para optimizar costo/tiempo sin comprometer calidad.",
+    "Alcance, tiempos, materiales principales, equipo involucrado y resultados. Incluye detalles de cronograma, metrados clave y aprendizajes aplicados para optimizar costo/tiempo sin comprometer calidad.",
   image: img,
 }));
 
